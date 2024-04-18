@@ -11,9 +11,16 @@ spec:
       labels:
         app: mydatabase
     spec:
+      volumes:
+      - name: config-volume
+        configMap:
+          name: app-config
       containers:
       - name: mydatabase
         image: gvenzl/oracle-xe:21.3.0
+        volumeMounts:
+        - name: config-volume
+          mountPath: /container-entrypoint-initdb.d
         env:
         - name: ORACLE_PASSWORD
           valueFrom:
