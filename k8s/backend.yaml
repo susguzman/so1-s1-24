@@ -23,8 +23,8 @@ spec:
               key: APP_USER
         - name: ORACLE_PASS
           valueFrom:
-            configMapKeyRef:
-              name: app-config
+            secretKeyRef:
+              name: app-secrets
               key: APP_USER_PASSWORD
         - name: ORACLE_CONNSTR
           value: database-svc:1521/xepdb1

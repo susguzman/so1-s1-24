@@ -29,8 +29,8 @@ spec:
         env:
         - name: ORACLE_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              name: app-config
+            secretKeyRef:
+              name: app-secrets
               key: ORACLE_PASSWORD
         - name: APP_USER
           valueFrom:
@@ -39,8 +39,8 @@ spec:
               key: APP_USER
         - name: APP_USER_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              name: app-config
+            secretKeyRef:
+              name: app-secrets
               key: APP_USER_PASSWORD
         resources:
           limits:
