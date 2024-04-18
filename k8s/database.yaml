@@ -15,12 +15,17 @@ spec:
       - name: config-volume
         configMap:
           name: app-config
+      - name: oracle-persistent-storage
+        persistentVolumeClaim:
+          claimName: oracle-pv-claim
       containers:
       - name: mydatabase
         image: gvenzl/oracle-xe:21.3.0
         volumeMounts:
         - name: config-volume
           mountPath: /container-entrypoint-initdb.d
+        - name: oracle-persistent-storage
+          mountPath: /opt/oracle/oradata
         env:
         - name: ORACLE_PASSWORD
           valueFrom:
@@ -55,3 +60,14 @@ spec:
   ports:
   - port: 1521
     targetPort: 1521
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: oracle-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
