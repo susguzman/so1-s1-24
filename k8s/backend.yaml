@@ -17,9 +17,15 @@ spec:
         image: susguzman/so1-s223-back:0.1.1
         env:
         - name: ORACLE_USER
-          value: APPUSER
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_USER
         - name: ORACLE_PASS
-          value: passwordapp
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_USER_PASSWORD
         - name: ORACLE_CONNSTR
           value: database-svc:1521/xepdb1
         resources:

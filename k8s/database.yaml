@@ -16,11 +16,20 @@ spec:
         image: gvenzl/oracle-xe:21.3.0
         env:
         - name: ORACLE_PASSWORD
-          value: passwordso1
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: ORACLE_PASSWORD
         - name: APP_USER
-          value: APPUSER
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_USER
         - name: APP_USER_PASSWORD
-          value: passwordapp
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_USER_PASSWORD
         resources:
           limits:
             memory: "2Gi"
