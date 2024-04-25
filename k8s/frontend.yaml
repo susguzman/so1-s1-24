@@ -27,9 +27,8 @@ kind: Service
 metadata:
   name: frontend-svc
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: myfrontend
   ports:
-  - port: 9999
-    targetPort: 80
+  - port: 80

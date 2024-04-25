@@ -40,7 +40,7 @@ kind: Service
 metadata:
   name: backend-svc
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: mybackend
   ports:
